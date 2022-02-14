@@ -23,6 +23,8 @@ public class ContenuServiceImpl implements ContenuService {
         this.contenuRepo = contenuRepo;
     }
 
+
+    /** Fonction qui renvoi le contenu d’une commande donnée*/
     @Override
     public Contenu getContenu(Long commandeId) {
         // il y'aura une erreur là, je le sens
@@ -30,25 +32,29 @@ public class ContenuServiceImpl implements ContenuService {
         return contenuRepo.findByCommande(commande);
     }
 
+
+    // TODO La vérification lors de l’enregistrement doit se faire sur l’article et sur la commande.
+    //     * En gros on doit vérifier si l’article du contenu existe déjà pour la commande en cours
+    //     * et si c’est le cas on met simplement la quantité à jour ,
+    //     * pareil pour la modification
+
     @Override
     @Transactional
-    public Contenu saveContenu(Contenu contenu) {
-        // IDK, this is suspish asf
-//        Commande commande = commandeRepo.findById(commandeId).get();
-//        Article article = articleRepo.findById(articleId).get();
-//        Contenu contenu2 =  new Contenu();
-//        contenu2.setCommande(commande);
-//        contenu2.setArticle(article);
-//        contenu2.setPrix_total(contenu.getPrix_total());
-//        contenu2.setQte(contenu.getQte());
-//        return contenuRepo.save(contenu2);
+    public Contenu saveContenu(Contenu contenu, Long commandeId, Long articleId) {
+        Article article = articleRepo.findById(articleId).get();
+        Commande commande = commandeRepo.findById(commandeId).get();
 
         try{
-            Contenu cont = contenuRepo.findByCommande(contenu.getCommande());
+            Contenu cont = contenuRepo.findByCommande(commande);
             if(cont != null && cont.getId()>0){
                 return new Contenu();
             }
-            return contenuRepo.save(contenu);
+
+            if (article != null && article.getId()>0){
+//                    cont.getQte() =
+                return contenuRepo.save(contenu);
+            }
+            return new Contenu();
         }catch (Exception e) {
             System.out.println(e.getMessage());
             return new Contenu();
@@ -67,13 +73,20 @@ public class ContenuServiceImpl implements ContenuService {
 
     @Override
     @Transactional
-    public Contenu updateContenu(Contenu contenu) {
+    public Contenu updateContenu(Contenu contenu, Long commandeId, Long articleId) {
+        Article article = articleRepo.findById(articleId).get();
+        Commande commande = commandeRepo.findById(commandeId).get();
+
         try{
-            Contenu cont = contenuRepo.findByCommande(contenu.getCommande());
+            Contenu cont = contenuRepo.findByCommande(commande);
             if(cont != null && cont.getId() != contenu.getId()){
                 return new Contenu();
             }
-            return contenuRepo.save(contenu);
+            if (article != null && article.getId()>0){
+//                    cont.getQte() =
+                return contenuRepo.save(contenu);
+            }
+            return new Contenu();
         }catch (Exception e) {
             System.out.println(e.getMessage());
             return new Contenu();

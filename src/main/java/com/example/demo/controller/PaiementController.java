@@ -24,13 +24,13 @@ public class PaiementController {
     }
 
     @PostMapping("/")
-    public Paiement create(@RequestBody Paiement paiement) {
-        return this.service.savePaiement(paiement);
+    public Paiement create(@RequestBody Paiement paiement, Long commandeId) {
+        return this.service.savePaiement(paiement, commandeId);
     }
 
     @PutMapping("/")
-    public Paiement update(@RequestBody Paiement paiement) {
-        return this.service.updatePaiement(paiement);
+    public Paiement update(@RequestBody Paiement paiement, Long commandeId) {
+        return this.service.updatePaiement(paiement, commandeId);
     }
 
     @DeleteMapping("/delete/{idPaiement}")

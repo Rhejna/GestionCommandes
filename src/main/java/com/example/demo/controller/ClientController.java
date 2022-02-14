@@ -33,6 +33,11 @@ public class ClientController {
         return this.service.saveClient(client);
     }
 
+    @PostMapping("/numero/{id}")
+    public int generateNumber(Long id) {
+        return this.service.generateNumero(id);
+    }
+
     @PutMapping("/")
     public Client update(@RequestBody Client client) {
         return this.service.updateClient(client);

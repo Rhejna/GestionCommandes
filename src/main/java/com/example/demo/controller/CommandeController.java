@@ -22,6 +22,11 @@ public class CommandeController {
         return service.allCommandes();
     }
 
+    @GetMapping("/client/{clientId}")
+    public List<Commande> getByClient(Long clientId) {
+        return service.getCommandesClient(clientId);
+    }
+
     @GetMapping("/numero/{value}")
     public Commande getByNumero(@PathVariable int value) {
         return this.service.getCommande(value);
@@ -30,6 +35,11 @@ public class CommandeController {
     @PostMapping("/")
     public Commande create(@RequestBody Commande commande) {
         return this.service.saveCommande(commande);
+    }
+
+    @PostMapping("/numero/{id}")
+    public int generateNumber(Long id) {
+        return this.service.generateNumero(id);
     }
 
     @PutMapping("/")

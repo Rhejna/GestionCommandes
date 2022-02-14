@@ -7,9 +7,11 @@ import java.util.List;
 public interface PaiementService {
     List<Paiement> allPaiements();
 
-    Paiement savePaiement(Paiement paiement);
+    List<Paiement> getPaiementsCommande(Long commandeId);
+
+    Paiement savePaiement(Paiement paiement, Long commandeId);
 
     String deletePaiement(Long id);
 
-    Paiement updatePaiement(Paiement paiement);
+    Paiement updatePaiement(Paiement paiement, Long commandeId);
 }

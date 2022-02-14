@@ -27,13 +27,13 @@ public class ContenuController {
     }
 
     @PostMapping("/")
-    public Contenu create(@RequestBody Contenu contenu) {
-        return this.service.saveContenu(contenu);
+    public Contenu create(@RequestBody Contenu contenu, Long commandeId, Long articleId) {
+        return this.service.saveContenu(contenu, commandeId, articleId);
     }
 
     @PutMapping("/")
-    public Contenu update(@RequestBody Contenu contenu) {
-        return this.service.updateContenu(contenu);
+    public Contenu update(@RequestBody Contenu contenu, Long commandeId, Long articleId) {
+        return this.service.updateContenu(contenu, commandeId, articleId);
     }
 
     @DeleteMapping("/delete/{idContenu}")

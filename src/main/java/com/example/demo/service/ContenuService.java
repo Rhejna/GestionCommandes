@@ -9,10 +9,11 @@ public interface ContenuService {
 
     Contenu getContenu(Long commandeId);
 
-    Contenu saveContenu(Contenu contenu);
-//    Contenu saveContenu(Contenu contenu, Long commandeId, Long articleId);
+//    Contenu saveContenu(Contenu contenu);
+    Contenu saveContenu(Contenu contenu, Long commandeId, Long articleId);
 
     String deleteContenu(Long id);
 
-    Contenu updateContenu(Contenu contenu);
+//    Contenu updateContenu(Contenu contenu);
+    Contenu updateContenu(Contenu contenu, Long commandeId, Long articleId);
 }

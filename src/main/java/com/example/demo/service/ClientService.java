@@ -7,6 +7,8 @@ import java.util.List;
 public interface ClientService {
     List<Client> allClients();
 
+    int generateNumero(Long id);
+
 //    Client getClient(int numero);
     Client getClient(String email);
 

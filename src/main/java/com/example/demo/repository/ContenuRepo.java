@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.classes.Article;
 import com.example.demo.classes.Commande;
 import com.example.demo.classes.Contenu;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,7 @@ public interface ContenuRepo extends JpaRepository<Contenu, Long> {
 //    Contenu getByCom(String ref);
 
     Contenu findByCommande(Commande commande);
+
+//    @Query(value = "SELECT u FROM Contenu u WHERE u.qte = :qte")
+//    int getByQte(int qte);
 }
